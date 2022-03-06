@@ -5,10 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FFD400;
 }
+
+.logo {
+  margin-left: 45%;
+  margin-top: 50px;
+  margin-bottom: -150px;
+}
+
 .cover {
   height: 250px;
+  background-color: #FFD400;
 }
+
 .cover-title {
   color: #274472;
   font-weight: 500;
@@ -16,14 +26,16 @@ body {
   font-size: 70px;
   margin-top: 10%;
 }
+
 .cover-text {
   display: flex;
   justify-content: center;
   text-align: center;
-  color: black;
+  color: #20385E;
   font-weight: 500;
   font-size: 30px;
 }
+
 .graph-button {
   background-color: #274472;
   color: white;
@@ -32,6 +44,7 @@ body {
   border-radius: 10px !important;
   padding: 15px 25px 15px 25px;
 }
+
 .graph-button:hover {
   background-color: white;
   color: #274472;
@@ -40,15 +53,14 @@ body {
   border-radius: 10px !important;
   padding: 15px 25px 15px 25px;
 }
+
 .action {
   display: flex;
   justify-content: center;
   text-align: center;
   font-weight: 500;
 }
-.mrg-right-10 {
-  margin-right: 10px;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import paw from './assets/paw.png';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+          <img className="logo" src={paw} width="200"></img>
+        <div className="cover">
+          <h1 className="cover-title">Greedy</h1>
+          <span className="cover-text">
+            Sistema de agendamento de banho e tosa
+          </span>
+        </div>
+        <div className="action">
+          <button className="graph-button" type="button" onClick={() => { }}>
+            Agendar
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 
