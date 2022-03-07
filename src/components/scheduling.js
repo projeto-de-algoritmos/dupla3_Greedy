@@ -16,6 +16,7 @@ const enqueue = (pqueue, id, petSize, startTime) => {
     }
 
     if (!exists) pqueue.push({ id, petSize, startTime, endTime })
+    return pqueue;
 }
 
 const dequeue = (pqueue) => {

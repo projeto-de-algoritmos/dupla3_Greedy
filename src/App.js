@@ -8,10 +8,11 @@ function App() {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [hourValue, onChange] = useState('10:00');
   const [petSize, setPetSize] = useState(1);
+  const [schedule, setSchedule] = useState(scheduling.createPriorityQueue());
+  const [bestSchedule, setBestSchedule] = useState([]);
   let [id, setId] = useState(0);
   const today = new Date();
   const date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-  const schedule = scheduling.createPriorityQueue();
 
   return (
     <>
@@ -29,7 +30,8 @@ function App() {
               Agendar
             </button>
           </div>
-          : null}
+          : null
+        }
       </div>
       {showTimePicker ?
         <div className="content">
@@ -53,13 +55,23 @@ function App() {
             <span >Tempo de banho:<br />Pet Pequeno: 1 hora<br />Pet Médio: 2 horas<br />Pet Grande: 3 horas</span>
           </div>
           <div className="picker">
-            <button className="graph-button" type="button" onClick={() => { scheduling.enqueue(schedule, id, Number(petSize), Number(hourValue.slice(0, 2))); setId(id += 1) }}>
+            <button className="graph-button" type="button" onClick={() => { setSchedule(scheduling.enqueue(schedule, id, Number(petSize), Number(hourValue.slice(0, 2)))); setId(id += 1) }}>
               Concluir
             </button>
           </div>
         </div>
         : null
       }
+      <div className="picker">
+        <button className="graph-button" type="button" onClick={() => { setBestSchedule(schedule) }}>
+          Ver agendamentos
+        </button>
+      </div>
+      <div className="picker">
+        <button className="graph-button" type="button" onClick={() => { console.log(scheduling.scheduling(bestSchedule)) }}>
+          Ver best Schedule
+        </button>
+      </div>
     </>
   );
 }
