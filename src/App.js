@@ -76,7 +76,7 @@ function App() {
       }
       {showScheduleButton ?
         <div className="picker">
-          <button className="graph-button" type="button" onClick={() => { setBestSchedule(scheduling.scheduling(schedule)); setShowSchedule(true) }}>
+          <button className="graph-button" style={{marginBottom: '15px'}} type="button" onClick={() => { setBestSchedule(scheduling.scheduling(schedule)); setShowSchedule(true) }}>
             Gerar melhor agendamento
           </button>
         </div>
