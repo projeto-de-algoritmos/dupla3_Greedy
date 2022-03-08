@@ -43,4 +43,4 @@ O projeto estará rodando na porta localhost:3000
 
 ## Vídeo
 [Link Youtube](https://youtu.be/ZKvNK15m0jk)<br>
-[Link Drive - baixar](https://drive.google.com/drive/u/0/folders/1sQYE8tMRA7WQqtAxFNSChVdSjJpPxf1ohttps://drive.google.com/file/d/1zke6AXWvMUC6pWZ-_CpnawV5NwEOn-wS/view?usp=sharing)
+[Link Drive - baixar](https://drive.google.com/file/d/1zke6AXWvMUC6pWZ-_CpnawV5NwEOn-wS/view?usp=sharing)
