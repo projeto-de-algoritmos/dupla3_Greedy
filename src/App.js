@@ -6,6 +6,8 @@ import scheduling from './components/scheduling';
 
 function App() {
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(false);
+  const [showScheduleButton, setShowScheduleButton] = useState(false);
   const [hourValue, onChange] = useState('08:00');
   const [petSize, setPetSize] = useState(1);
   const [schedule, setSchedule] = useState(scheduling.createPriorityQueue());
@@ -19,7 +21,7 @@ function App() {
       <div>
         <img className="logo" src={paw} width="200"></img>
         <div className="cover">
-          <h1 className="cover-title">Greedy</h1>
+          <h1 className="cover-title">Pet Greedy</h1>
           <span className="cover-text">
             Sistema de agendamento de banho e tosa
           </span>
@@ -65,31 +67,36 @@ function App() {
             <span >Tempo de banho:<br />Pet Pequeno: 1 hora<br />Pet Médio: 2 horas<br />Pet Grande: 3 horas</span>
           </div>
           <div className="picker">
-            <button className="graph-button" type="button" onClick={() => { setSchedule(scheduling.enqueue(schedule, name, Number(petSize), Number(hourValue.slice(0, 2)))) }}>
+            <button className="graph-button" type="button" onClick={() => { setSchedule(scheduling.enqueue(schedule, name, Number(petSize), Number(hourValue.slice(0, 2)))); setShowScheduleButton(true) }}>
               Concluir
             </button>
           </div>
         </div>
         : null
       }
+      {showScheduleButton ?
+        <div className="picker">
+          <button className="graph-button" type="button" onClick={() => { setBestSchedule(scheduling.scheduling(schedule)); setShowSchedule(true) }}>
+            Gerar melhor agendamento
+          </button>
+        </div>
+        : null}
+      {showSchedule ?
+        <div>
+          <div>
+            <span className="cover-text"><br /><br />Agendamentos Realizados</span>
+          </div>
+          <div className="picker">
+            <ul>
+              {bestSchedule?.map((pet) => (
 
-      <div className="picker">
-        <button className="graph-button" type="button" onClick={() => { setBestSchedule(scheduling.scheduling(schedule)) }}>
-          Gerar melhor agendamento
-        </button>
-      </div>
-      <div>
-        <span className="cover-text"><br /><br />Agendamentos Realizados</span>
-      </div>
-      <div className="picker">
-        <ul>
-          {bestSchedule?.map((pet) => (
+                <li>Hora: {pet.startTime}h às {pet.endTime}h - Pet: {pet.name.charAt(0).toUpperCase() + pet.name.slice(1)}</li>
 
-            <li>Hora: {pet.startTime}h às {pet.endTime}h - Pet: {pet.name.charAt(0).toUpperCase() + pet.name.slice(1)}</li>
-
-          ))}
-        </ul>
-      </div>
+              ))}
+            </ul>
+          </div>
+        </div>
+        : null}
     </>
   );
 }
