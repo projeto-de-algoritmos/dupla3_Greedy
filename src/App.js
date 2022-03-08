@@ -6,11 +6,11 @@ import scheduling from './components/scheduling';
 
 function App() {
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [hourValue, onChange] = useState('10:00');
+  const [hourValue, onChange] = useState('08:00');
   const [petSize, setPetSize] = useState(1);
   const [schedule, setSchedule] = useState(scheduling.createPriorityQueue());
   const [bestSchedule, setBestSchedule] = useState([]);
-  let [id, setId] = useState(0);
+  const [name, setName] = useState('');
   const today = new Date();
   const date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 
@@ -35,9 +35,13 @@ function App() {
       </div>
       {showTimePicker ?
         <div className="content">
-          <div>
+          <div className='picker'>
             <span className="cover-text">Agende seu horário para hoje, dia {date}</span>
           </div>
+          <div className='picker'>
+            <span>Realizamos agendamentos com horas inteiras (Ex.: 13:00)</span>
+          </div>
+
           <div className="picker">
             <TimePicker onChange={onChange} value={hourValue} />
           </div>
@@ -52,28 +56,42 @@ function App() {
             </select>
           </div>
           <div className="picker">
+            <span className="cover-text">Nome do pet</span>
+          </div>
+          <div className="picker">
+            <input type="text" onChange={(e) => setName(e.target.value)} />
+          </div>
+          <div className="picker">
             <span >Tempo de banho:<br />Pet Pequeno: 1 hora<br />Pet Médio: 2 horas<br />Pet Grande: 3 horas</span>
           </div>
           <div className="picker">
-            <button className="graph-button" type="button" onClick={() => { setSchedule(scheduling.enqueue(schedule, id, Number(petSize), Number(hourValue.slice(0, 2)))); setId(id += 1) }}>
+            <button className="graph-button" type="button" onClick={() => { setSchedule(scheduling.enqueue(schedule, name, Number(petSize), Number(hourValue.slice(0, 2)))) }}>
               Concluir
             </button>
           </div>
         </div>
         : null
       }
+
       <div className="picker">
-        <button className="graph-button" type="button" onClick={() => { setBestSchedule(schedule) }}>
-          Ver agendamentos
+        <button className="graph-button" type="button" onClick={() => { setBestSchedule(scheduling.scheduling(schedule)) }}>
+          Gerar melhor agendamento
         </button>
       </div>
+      <div>
+        <span className="cover-text"><br /><br />Agendamentos Realizados</span>
+      </div>
       <div className="picker">
-        <button className="graph-button" type="button" onClick={() => { console.log(scheduling.scheduling(bestSchedule)) }}>
-          Ver best Schedule
-        </button>
+        <ul>
+          {bestSchedule?.map((pet) => (
+
+            <li>Hora: {pet.startTime}h às {pet.endTime}h - Pet: {pet.name.charAt(0).toUpperCase() + pet.name.slice(1)}</li>
+
+          ))}
+        </ul>
       </div>
     </>
   );
 }
 
-export default App;
+export default App; 
